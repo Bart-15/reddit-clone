@@ -749,17 +749,33 @@
     "lodash.merge" "^4.6.2"
     "postcss-selector-parser" "6.0.10"
 
-"@tanstack/query-core@4.29.11":
-  "integrity" "sha512-8C+hF6SFAb/TlFZyS9FItgNwrw4PMa7YeX+KQYe2ZAiEz6uzg6yIr+QBzPkUwZ/L0bXvGd1sufTm3wotoz+GwQ=="
-  "resolved" "https://registry.npmjs.org/@tanstack/query-core/-/query-core-4.29.11.tgz"
-  "version" "4.29.11"
-
-"@tanstack/react-query@^4.29.11":
-  "integrity" "sha512-zhcN6+zF6cxprxhTHQajHGlvxgK8npnp9uLe9yaWhGc6sYcPWXzyO4raL4HomUzQOPzu3jLvkriJQ7BOrDM8vA=="
-  "resolved" "https://registry.npmjs.org/@tanstack/react-query/-/react-query-4.29.12.tgz"
-  "version" "4.29.12"
+"@tanstack/match-sorter-utils@^8.7.0":
+  "integrity" "sha512-rKH8LjZiszWEvmi01NR72QWZ8m4xmXre0OOwlRGnjU01Eqz/QnN+cqpty2PJ0efHblq09+KilvyR7lsbzmXVEw=="
+  "resolved" "https://registry.npmjs.org/@tanstack/match-sorter-utils/-/match-sorter-utils-8.8.4.tgz"
+  "version" "8.8.4"
   dependencies:
-    "@tanstack/query-core" "4.29.11"
+    "remove-accents" "0.4.2"
+
+"@tanstack/query-core@4.29.19":
+  "integrity" "sha512-uPe1DukeIpIHpQi6UzIgBcXsjjsDaLnc7hF+zLBKnaUlh7jFE/A+P8t4cU4VzKPMFB/C970n/9SxtpO5hmIRgw=="
+  "resolved" "https://registry.npmjs.org/@tanstack/query-core/-/query-core-4.29.19.tgz"
+  "version" "4.29.19"
+
+"@tanstack/react-query-devtools@^4.29.19":
+  "integrity" "sha512-rL2xqTPr+7gJvVGwyq8E8CWqqw950N4lZ6ffJeNX0qqymKHxHW1FM6nZaYt7Aufs/bXH0m1L9Sj3kDGQbp0rwg=="
+  "resolved" "https://registry.npmjs.org/@tanstack/react-query-devtools/-/react-query-devtools-4.29.19.tgz"
+  "version" "4.29.19"
+  dependencies:
+    "@tanstack/match-sorter-utils" "^8.7.0"
+    "superjson" "^1.10.0"
+    "use-sync-external-store" "^1.2.0"
+
+"@tanstack/react-query@^4.29.11", "@tanstack/react-query@4.29.19":
+  "integrity" "sha512-XiTIOHHQ5Cw1WUlHaD4fmVUMhoWjuNJlAeJGq7eM4BraI5z7y8WkZO+NR8PSuRnQGblpuVdjClQbDFtwxTtTUw=="
+  "resolved" "https://registry.npmjs.org/@tanstack/react-query/-/react-query-4.29.19.tgz"
+  "version" "4.29.19"
+  dependencies:
+    "@tanstack/query-core" "4.29.19"
     "use-sync-external-store" "^1.2.0"
 
 "@types/editorjs__header@^2.6.0":
@@ -1261,6 +1277,13 @@
   "integrity" "sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw=="
   "resolved" "https://registry.npmjs.org/cookie/-/cookie-0.5.0.tgz"
   "version" "0.5.0"
+
+"copy-anything@^3.0.2":
+  "integrity" "sha512-yCEafptTtb4bk7GLEQoM8KVJpxAfdBJYaXyzQEgQQQgYrZiDp8SJmGKlYza6CYjEDNstAdNdKA3UuoULlEbS6w=="
+  "resolved" "https://registry.npmjs.org/copy-anything/-/copy-anything-3.0.5.tgz"
+  "version" "3.0.5"
+  dependencies:
+    "is-what" "^4.1.8"
 
 "cross-spawn@^7.0.2", "cross-spawn@^7.0.3":
   "integrity" "sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w=="
@@ -2428,6 +2451,11 @@
     "call-bind" "^1.0.2"
     "get-intrinsic" "^1.1.1"
 
+"is-what@^4.1.8":
+  "integrity" "sha512-uKua1wfy3Yt+YqsD6mTUEa2zSi3G1oPlqTflgaPJ7z63vUGN5pxFpnQfeSLMFnJDEsdvOtkp1rUWkYjB4YfhgA=="
+  "resolved" "https://registry.npmjs.org/is-what/-/is-what-4.1.15.tgz"
+  "version" "4.1.15"
+
 "is-wsl@^2.2.0":
   "integrity" "sha512-fKzAra0rGJUUBwGBgNkHZuToZcn+TtXHpeCgmkMJMMYx1sQDYaCSyjJBSCa2nH1DGm7s3n1oBnohoVTBaN7Lww=="
   "resolved" "https://registry.npmjs.org/is-wsl/-/is-wsl-2.2.0.tgz"
@@ -3263,6 +3291,11 @@
     "define-properties" "^1.2.0"
     "functions-have-names" "^1.2.3"
 
+"remove-accents@0.4.2":
+  "integrity" "sha512-7pXIJqJOq5tFgG1A2Zxti3Ht8jJF337m4sowbuHsW30ZnkQFnDzy9qBNhgzX8ZLW4+UBcXiiR7SwR6pokHsxiA=="
+  "resolved" "https://registry.npmjs.org/remove-accents/-/remove-accents-0.4.2.tgz"
+  "version" "0.4.2"
+
 "resolve-from@^4.0.0":
   "integrity" "sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g=="
   "resolved" "https://registry.npmjs.org/resolve-from/-/resolve-from-4.0.0.tgz"
@@ -3556,6 +3589,13 @@
     "mz" "^2.7.0"
     "pirates" "^4.0.1"
     "ts-interface-checker" "^0.1.9"
+
+"superjson@^1.10.0":
+  "integrity" "sha512-vkpPQAxdCg9SLfPv5GPC5fnGrui/WryktoN9O5+Zif/14QIMjw+RITf/5LbBh+9QpBFb3KNvJth+puz2H8o6GQ=="
+  "resolved" "https://registry.npmjs.org/superjson/-/superjson-1.12.4.tgz"
+  "version" "1.12.4"
+  dependencies:
+    "copy-anything" "^3.0.2"
 
 "supports-color@^7.1.0":
   "integrity" "sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw=="
