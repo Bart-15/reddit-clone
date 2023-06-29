@@ -3,12 +3,12 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';  
-import { useCommunity } from '../../../data/query-hooks/useCommunity';
+import { useAddCommunity } from '../../../data/query-hooks/community/useAddCommunity';
 
 const CreateCommunity = () => {
     const [input, setInput] = useState<string>("");
     const router = useRouter();
-    const createCommunity = useCommunity();
+    const createCommunity = useAddCommunity();
     
     return ( 
         <div className="container flex items-center h-full max-w-3xl mx-auto">
