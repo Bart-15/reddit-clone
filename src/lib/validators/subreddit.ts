@@ -5,9 +5,9 @@ export const SubredditValidator = object({
 });
 
 export const SubredditSubsciptionValidator = object({
-    subreddit: string()
+    subredditId: string()
 });
 
 export type CreateSubredditValidatorInput = z.infer<typeof SubredditValidator>;
-export type CreateSubredditSubsciptionValidator = z.infer<typeof SubredditSubsciptionValidator>;
+export type SubscribeToSubredditPayload = z.infer<typeof SubredditSubsciptionValidator>;
 
