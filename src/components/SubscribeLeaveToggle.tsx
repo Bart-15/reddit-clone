@@ -2,7 +2,7 @@
 
 import { FC } from 'react';
 import { Button } from './ui/Button';
-import { useSubscribe, useUnsubscribe } from '@/data/query-hooks/subscribe';
+import { useSubscribe, useUnsubscribe } from '@/data/query-hooks/subreddit';
 import { SubscribeToSubredditPayload } from '@/lib/validators/subreddit';
 
 

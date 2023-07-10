@@ -8,12 +8,15 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import type EditorJS from '@editorjs/editorjs'
 import { uploadFiles } from '@/lib/validators/uploadthing';
 import { toast } from '@/hooks/use-toast';
+import { useCreatePost } from '@/data/query-hooks/subreddit/';
 
 interface EditorProps {
     subredditId: string
 }
 
 const Editor: FC<EditorProps> = ({subredditId}) => {
+
+    const { mutate: createPost, isLoading: postLoading } = useCreatePost();
 
     const { register, handleSubmit, formState: { errors } } = useForm<PostInputValidator>({
         resolver: zodResolver(PostValidator),
@@ -135,10 +138,7 @@ const Editor: FC<EditorProps> = ({subredditId}) => {
             blocks
         }   
 
-        // eslint-disable-next-line no-console
-        console.log("Payload", payload)
-
-        // TODO: Implement mutation lateeerrr beshie
+        createPost(payload);
     }
 
     return ( 
