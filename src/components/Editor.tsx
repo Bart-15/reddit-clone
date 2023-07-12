@@ -135,7 +135,7 @@ const Editor: FC<EditorProps> = ({subredditId}) => {
         const payload = {
             title,
             subredditId,
-            blocks
+            content: blocks
         }   
 
         createPost(payload);

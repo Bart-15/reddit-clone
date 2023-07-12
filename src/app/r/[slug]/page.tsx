@@ -1,5 +1,6 @@
 
 import MiniCreatePost from "@/components/MiniCreateComponent";
+import PostFeed from "@/components/PostFeed";
 import { INIFINITE_SCROLLING_PAGINATION_RESULTS } from "@/config";
 import { getAuthSession } from "@/lib/auth";
 import { db } from "@/lib/db";
@@ -26,7 +27,8 @@ const SubredditPage = async ({params}: PageProps) => {
                     comments: true,
                     subreddit: true
                 },
-                take: INIFINITE_SCROLLING_PAGINATION_RESULTS
+                // take: INIFINITE_SCROLLING_PAGINATION_RESULTS
+                take: 10
             },
         }
     })
@@ -38,6 +40,7 @@ const SubredditPage = async ({params}: PageProps) => {
             <h1 className="font-bold text-3xl md:text-4xl h-14">r/{subreddit.name}</h1>
             <MiniCreatePost session={session}/>
             {/* TODO: Show post in user feed */}
+            <PostFeed initialPosts={subreddit.posts} subredditName={subreddit.name} />
         </div> 
     );  
 }

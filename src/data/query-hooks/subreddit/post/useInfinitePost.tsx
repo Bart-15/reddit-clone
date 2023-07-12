@@ -3,6 +3,7 @@ import { ExtendedPost } from "@/types/db";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import type { InfiniteData } from "@tanstack/react-query";
 import axios from "axios";
+import { keys } from "@/data/react-query/constants";
 
 type UseInfiniteProps = {
     initialPosts: ExtendedPost[], 
@@ -18,9 +19,9 @@ interface UseInifinitePost {
 
 function useInfinitePost({ initialPosts, subredditName }: UseInfiniteProps): UseInifinitePost {
     const { data, fetchNextPage, isFetchingNextPage } = useInfiniteQuery(
-        ["infinite-posts"],
+        [keys.infinitePost],
         async ({ pageParam = 0}) => {
-            const query = `/api/posts?limit=${INIFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}` + (!!subredditName ? `&subredditName=${subredditName}` : '');
+            const query = `/api/posts?limit=${10}&page=${pageParam}` + (!!subredditName ? `&subredditName=${subredditName}` : '');
             const { data } = await axios.get(query)
             return data as ExtendedPost[];
         },
