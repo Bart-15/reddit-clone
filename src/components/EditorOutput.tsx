@@ -31,9 +31,7 @@ const renderers = {
 
 
 const EditorOutput: FC<EditorOutputProps> = ({ content }) => {
-    console.log("helloi",content)
     return (
-        // @ts-expect-error
         <Output 
         style={style}
         className='text-sm'

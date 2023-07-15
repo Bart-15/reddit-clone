@@ -16,16 +16,8 @@ interface PostVoteClientProps {
 }
 
 const PostVoteClient: FC<PostVoteClientProps> = ({postId, initialVotesAmt, initialVote}) => {
-    
-    const [votesAmt, setVotesAmt] = useState<number>(initialVotesAmt);
-    const [currentVote, setCurrentVote] = useState(initialVote);
-    const prevVote = usePrevious(currentVote);
-    
-    useEffect(() => {
-        setCurrentVote(initialVote);
-    }, [initialVote]);
 
-    const vote = usePostVote();
+    const { mutate: vote, votesAmt, currentVote } = usePostVote(initialVote, initialVotesAmt);
     
     return (  
         <div className="flex sm:flex-col gap-4 sm:gap-0 pr-6 sm:w-20 pb-4 sm:pb-0">

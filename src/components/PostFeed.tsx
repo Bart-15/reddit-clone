@@ -24,8 +24,9 @@ const PostFeed: FC<PostFeedProps> = ({ initialPosts, subredditName }) => {
 
     const { data, fetchNextPage, isFetchingNextPage } = useInfinitePost({initialPosts, subredditName})
     
-    const posts = data?.pages.flatMap((page) => page) ?? initialPosts;
+    const posts = data?.pages.flatMap((page) => page) ?? [];
 
+    console.log("hello", data);
     return ( 
         <ul className="flex flex-col col-span-2 space-y-6">
             {

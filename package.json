@@ -32,12 +32,9 @@
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.9",
     "@tanstack/react-query": "^4.29.11",
-    "@tanstack/react-query-devtools": "^4.29.19",
-    "@types/node": "20.2.5",
-    "@types/react": "18.2.7",
-    "@types/react-dom": "18.2.4",
+    "@tanstack/react-query-devtools": "^4.29.23",
     "@uploadthing/react": "^4.0.0",
-    "@upstash/redis": "^1.21.0",
+    "@upstash/redis": "^1.22.0",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
     "class-variance-authority": "^0.6.0",
@@ -70,6 +67,9 @@
   },
   "devDependencies": {
     "@types/editorjs__header": "^2.6.0",
-    "@types/lodash.debounce": "^4.0.7"
+    "@types/lodash.debounce": "^4.0.7",
+    "@types/node": "20.2.5",
+    "@types/react": "18.2.7",
+    "@types/react-dom": "18.2.4"
   }
 }

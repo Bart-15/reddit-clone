@@ -25,6 +25,8 @@ function queryErrHandler(error: unknown) {
                     </Link>
                 )
             })
+
+            return;
         }
         
         toast({
