@@ -6,6 +6,7 @@ import { Button } from '../ui/Button';
 import { usePrevious } from '@mantine/hooks';
 import { ArrowBigUp, ArrowBigDown } from 'lucide-react';
 import { cn } from '@/lib/utils'
+import { usePostVote } from '@/data/query-hooks/subreddit';
 
 
 interface PostVoteClientProps {
@@ -22,11 +23,13 @@ const PostVoteClient: FC<PostVoteClientProps> = ({postId, initialVotesAmt, initi
     
     useEffect(() => {
         setCurrentVote(initialVote);
-    }, [initialVote])
+    }, [initialVote]);
 
+    const vote = usePostVote();
+    
     return (  
         <div className="flex sm:flex-col gap-4 sm:gap-0 pr-6 sm:w-20 pb-4 sm:pb-0">
-            <Button size="sm" variant="ghost" arial-label="upvote">
+            <Button onClick={() => vote({postId, voteType:"UP"})} size="sm" variant="ghost" arial-label="upvote">
                 <ArrowBigUp 
                 className={cn("h-5 w-5 text-zinc-700", {
                     "text-emerald-500 fill-emerald-500" : currentVote === "UP"
@@ -38,7 +41,7 @@ const PostVoteClient: FC<PostVoteClientProps> = ({postId, initialVotesAmt, initi
                 {votesAmt}
             </p>
 
-            <Button size="sm" variant="ghost" arial-label="downvote">
+            <Button onClick={() => vote({postId, voteType:"DOWN"})} size="sm" variant="ghost" arial-label="downvote">
                 <ArrowBigDown 
                 className={cn("h-5 w-5 text-zinc-700", {
                     "text-red-500 fill-red-500" : currentVote === "DOWN"

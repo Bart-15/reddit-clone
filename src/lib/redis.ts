@@ -1,10 +1,6 @@
-import { VoteType } from "@prisma/client"
+import { Redis } from '@upstash/redis';
 
-export type CachedPost = {
-    id: string
-    title: string
-    authorUsername: string
-    content: string
-    currentVote: VoteType | null
-    createdAt: Date
-}
+export const redis = new Redis({
+    url: process.env.REDIS_URL!,
+    token: process.env.REDIS_TOKEN!
+});
