@@ -49,12 +49,7 @@ function usePostVote(
                     else if (voteType === "DOWN") setVotesAmt((prev) => prev - (currentVote ? 2 : 1))
                 }
             },
-            // onError: (err, data) => {
-            //     if(data.voteType === "UP") setVotesAmt((prev) => prev - 1)
-            //     else setVotesAmt((prev) => prev + 1);
 
-            //     setCurrentVote(prevVote);
-            // }
             onSettled: (data, error, variables, context) => {
                 //if theres an erro
                 if(error) {

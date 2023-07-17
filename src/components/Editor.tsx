@@ -9,6 +9,7 @@ import type EditorJS from '@editorjs/editorjs'
 import { uploadFiles } from '@/lib/validators/uploadthing';
 import { toast } from '@/hooks/use-toast';
 import { useCreatePost } from '@/data/query-hooks/subreddit/';
+import { Button } from './ui/Button';
 
 interface EditorProps {
     subredditId: string
@@ -141,28 +142,33 @@ const Editor: FC<EditorProps> = ({subredditId}) => {
         createPost(payload);
     }
 
-    return ( 
-        <div className="w-full p-4 bg-zinc-50 rounded-lg border border-zinc-200">
-            <form
-            onSubmit={handleSubmit((data) => handlePost(data))}
-            id="subreddit-post-form" 
-            className='w-fit' 
-            >
-                <div className="prose prose-stone dark:prose-invert">
-                    <TextAreaAutosize
-                    ref={(e) => {
-                        titleRef(e);
+    return (
+        <>
+            <div className="w-full p-4 bg-zinc-50 rounded-lg border border-zinc-200">
+                <form
+                onSubmit={handleSubmit((data) => handlePost(data))}
+                id="subreddit-post-form" 
+                className='w-fit' 
+                >
+                    <div className="prose prose-stone dark:prose-invert">
+                        <TextAreaAutosize
+                        ref={(e) => {
+                            titleRef(e);
 
-                        // @ts-ignore
-                        titleInputRef.current = e;
-                    }}
-                    {...rest}
-                    placeholder='Title' 
-                    className="w-full resize-none appearance-none overflow-hidden bg-transparent text-5xl font-bold focus:outline-none" />
-                    <div id="editor" className="min-h-[500px]"/>
-                </div>    
-            </form>
-        </div>
+                            // @ts-ignore
+                            titleInputRef.current = e;
+                        }}
+                        {...rest}
+                        placeholder='Title' 
+                        className="w-full resize-none appearance-none overflow-hidden bg-transparent text-5xl font-bold focus:outline-none" />
+                        <div id="editor" className="min-h-[500px]"/>
+                    </div>    
+                </form>
+            </div>
+            <div className="w-full flex justify-end">
+                <Button isLoading={postLoading} type="submit" className="w-full" form="subreddit-post-form">Post</Button>
+            </div>
+        </>
     );
 }
 

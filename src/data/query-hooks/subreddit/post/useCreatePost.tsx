@@ -1,6 +1,7 @@
+import { keys } from "@/data/react-query/constants";
 import { toast } from "@/hooks/use-toast";
 import { PostInputValidator } from "@/lib/validators/post";
-import { UseMutateFunction, useMutation } from "@tanstack/react-query";
+import { UseMutateFunction, useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import { usePathname, useRouter } from "next/navigation";
 
@@ -20,6 +21,8 @@ function useCreatePost(): UseCreatePost {
     const pathname = usePathname();
     const router = useRouter();
 
+    const queryClient = useQueryClient();
+    
     const { mutate, isLoading } = useMutation(
         (payload: PostInputValidator) => createPost(payload),
         {
@@ -30,6 +33,8 @@ function useCreatePost(): UseCreatePost {
 
                 router.refresh();
 
+                queryClient.invalidateQueries({ queryKey: [keys.infinitePost] });
+                
                 return toast({
                     description: 'Your post has been published!'
                 });

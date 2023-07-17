@@ -31,7 +31,7 @@ const Post: FC<PostProps> = ({subredditName, post, commentAmt, votesAmt, current
                     {
                         subredditName ? (
                             <>
-                                <a className="undeline text-zinc-900 text-sm underline-offset-2" href=''>r/{subredditName}</a>
+                                <a className="undeline text-zinc-900 text-sm underline-offset-2" href={`/r/${subredditName}`}>r/{subredditName}</a>
                                 <span className='px-1'>•</span>
                             </>
                         ) :  null

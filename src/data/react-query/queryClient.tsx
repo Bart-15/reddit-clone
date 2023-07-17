@@ -44,6 +44,8 @@ export const queryClient = new QueryClient({
             refetchOnMount: false,
             refetchOnWindowFocus: false,
             refetchOnReconnect: false,
+            staleTime: 2*(60*1000), // 2 mins, it depends
+            cacheTime: 3*(60*1000), // 3 mins
         },
         mutations: {
             onError: queryErrHandler,

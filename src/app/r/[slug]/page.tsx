@@ -27,11 +27,13 @@ const SubredditPage = async ({params}: PageProps) => {
                     comments: true,
                     subreddit: true
                 },
-                // take: INIFINITE_SCROLLING_PAGINATION_RESULTS
-                take: 10
+                orderBy: {
+                    createdAt: 'desc',
+                },
+                take: INIFINITE_SCROLLING_PAGINATION_RESULTS
             },
         }
-    })
+    });
 
     if(!subreddit) return notFound();
 
@@ -40,7 +42,7 @@ const SubredditPage = async ({params}: PageProps) => {
             <h1 className="font-bold text-3xl md:text-4xl h-14">r/{subreddit.name}</h1>
             <MiniCreatePost session={session}/>
             {/* TODO: Show post in user feed */}
-            <PostFeed initialPosts={subreddit.posts} subredditName={subreddit.name} />
+            <PostFeed initialPosts={subreddit.posts} subredditName={subreddit?.name} />
         </div> 
     );  
 }
