@@ -1,9 +1,8 @@
 "use client"
 
 import { VoteType } from '@prisma/client';
-import { FC, useState, useEffect } from 'react';
+import { FC } from 'react';
 import { Button } from '../ui/Button';
-import { usePrevious } from '@mantine/hooks';
 import { ArrowBigUp, ArrowBigDown } from 'lucide-react';
 import { cn } from '@/lib/utils'
 import { usePostVote } from '@/data/query-hooks/subreddit';
