@@ -10,6 +10,8 @@ interface UseCreatCommentProps {
     isLoading: boolean
     input: string
     setInput: (value: string) => void;
+    isReplying: boolean
+    setIsReplying: (value: boolean) => void;
 }
 
 async function createComment(payload: CommentRequest) {
@@ -20,6 +22,8 @@ async function createComment(payload: CommentRequest) {
 
 function useCreateComment(): UseCreatCommentProps {
     const [input, setInput] = useState<string>('');
+    const [isReplying, setIsReplying] = useState<boolean>(false);
+
     const router = useRouter();
 
     const { mutate, isLoading } = useMutation(
@@ -27,12 +31,13 @@ function useCreateComment(): UseCreatCommentProps {
         {
             onSuccess: (_data, variables) => {
                 router.refresh();
-                setInput('')
+                setInput('');
+                setIsReplying(false)
             },
             onError: () => {
                 return toast({
-                    title: 'There was a problem',
-                    description: 'Something went wrong, please try again.',
+                    title: 'Something went wrong',
+                    description: 'Comment wasnt posted successfully, please try again',
                     variant: 'destructive'
                 })
             }  
@@ -43,7 +48,9 @@ function useCreateComment(): UseCreatCommentProps {
         mutate,
         isLoading,
         input,
-        setInput
+        setInput,
+        isReplying,
+        setIsReplying
     }
 };
 

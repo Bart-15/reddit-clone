@@ -21,14 +21,13 @@ interface UseInifinitePost {
 async function fetchPosts(pageParam: any, subredditName?: string){
     const query = `/api/posts?limit=${INIFINITE_SCROLLING_PAGINATION_RESULTS}&page=${pageParam}` + (!!subredditName ? `&subredditName=${subredditName}` : '');
     const { data } = await axios.get(query);
-    console.log("dataaa", data);
     return data as ExtendedPost[];
 }
 
 
 function useInfinitePost({ initialPosts,  subredditName }: UseInfiniteProps): UseInifinitePost {
 
-    // const queryClient = useQueryClient();
+    const queryClient = useQueryClient();
 
 
     const lastPostRef = useRef<HTMLElement>(null);
@@ -47,7 +46,8 @@ function useInfinitePost({ initialPosts,  subredditName }: UseInfiniteProps): Us
                 return pages.length + 1
             },
             initialData: { pages: [initialPosts], pageParams: [1] },
-        }
+        },
+        
     )
     
     useEffect(() => {

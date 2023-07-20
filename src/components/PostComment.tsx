@@ -1,8 +1,16 @@
 "use client"
-import { FC, useRef } from 'react';
-import UserAvatar from './UserAvatar';
-import { Comment, CommentVote, User } from '@prisma/client';
+import { useCreateComment } from '@/data/query-hooks/subreddit';
 import { formatTimeToNow } from '@/lib/utils';
+import { Comment, CommentVote, User } from '@prisma/client';
+import { MessageSquare } from 'lucide-react';
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import { FC, useRef } from 'react';
+import CommentVotes from './CommentVotes';
+import UserAvatar from './UserAvatar';
+import { Button } from './ui/Button';
+import { Label } from './ui/Label';
+import { Textarea } from './ui/TextArea';
 
 type ExtendedComment = Comment & {
     votes: CommentVote[]
@@ -11,11 +19,19 @@ type ExtendedComment = Comment & {
 
 interface PostCommentProps {
     comment: ExtendedComment
+    votesAmt: number
+    currentVote: CommentVote | undefined
+    postId: string
 }
 
-const PostComment: FC<PostCommentProps> = ({comment}) => {
+const PostComment: FC<PostCommentProps> = ({comment, votesAmt, currentVote, postId}) => {
 
-    const commentRef = useRef<HTMLDivElement>(null)
+    const commentRef = useRef<HTMLDivElement>(null);
+
+    const { data: session } = useSession(); 
+    const router = useRouter();
+
+    const { mutate: createComment, isLoading, input, setInput, isReplying, setIsReplying} = useCreateComment();
 
     return ( 
         <div className="flex flex-col" ref={commentRef}>
@@ -38,8 +54,59 @@ const PostComment: FC<PostCommentProps> = ({comment}) => {
             </div>
 
             <p className="text-sm text-zinc-900 mt-2">{comment.text}</p>
+            <div className="flex gap-2 items-center flex-wrap">
+                <CommentVotes commentId={comment.id} initialVote={currentVote} initialVotesAmt={votesAmt} />
+                
+                <Button
+                onClick={() => {
+                    if(!session) return router.push('/sign-in');
+                    setIsReplying(true);
+                }}
+                variant='ghost' size='xs'>
+                <MessageSquare className='h-4 w-4 mr-1.5'/>
+                    Reply
+                </Button>
+
+                {
+                    isReplying ? (
+                        <div className="grid w-full gap-1.5">
+                        <Label htmlFor="comment">Your comment</Label>
+                        <div className="mt-2">
+                            <Textarea 
+                            id="comment"
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}
+                            rows={1}
+                            placeholder='What are your thoughts?'
+                            />
+            
+                            <div className="mt-2 flex justify-end gap-2">
+                                <Button 
+                                tabIndex={-1}
+                                variant='subtle'
+                                onClick={() => setIsReplying(false)}>
+                                Cancel
+                                </Button>
+                                <Button 
+                                isLoading={isLoading}
+                                disabled={!input.length}
+                                onClick={
+                                    () => createComment({
+                                        postId,
+                                        text: input,
+                                        replyToId: comment.replyToId ?? comment.id
+                                    })
+                                }
+                                >Post
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                    ) : null
+                }
+            </div>
         </div>
     );
 }
- 
+
 export default PostComment;

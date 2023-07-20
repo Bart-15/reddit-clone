@@ -7,7 +7,7 @@ export const PostVoteValidator = object({
 })
 
 export const CommentVoteValidator = object({
-    postId: string(),
+    commentId: string(),
     voteType: z.enum(['UP', 'DOWN'])
 })
 

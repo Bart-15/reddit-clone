@@ -8,3 +8,5 @@ export {default as usePostVote} from "./post/vote/usePostVote";
 
 // Comments
 export {default as useCreateComment} from "./post/comment/useCreateComment";
+export { default as useCommentVote} from "./post/vote/useCommentVote";
+export { default as useSearchQuery } from './useSearchQuery';
