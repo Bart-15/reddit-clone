@@ -33,7 +33,7 @@ unknown
 
                 return router.push(`/r/${data}`)
             },
-            onError: (error) => {
+            onSettled: (data, error, variables, context) => { 
                 if(error instanceof AxiosError) {
                     if(error.response?.status === 409) {
                         return toast({

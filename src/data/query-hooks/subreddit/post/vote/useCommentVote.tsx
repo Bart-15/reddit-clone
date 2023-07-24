@@ -6,7 +6,7 @@ import { UseMutateFunction, useMutation } from "@tanstack/react-query";
 import { useEffect, useState } from 'react';
 
 import { toast } from '@/hooks/use-toast';
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 type PartialVote = Pick<CommentVote, 'type'>
 
@@ -54,21 +54,29 @@ function useCommentVote(
             },
 
             onSettled: (data, error, variables, context) => {
-                //if theres an erro
-                if(error) {
-                    const { voteType } = variables;
+                if(error instanceof AxiosError) {
+                    if(error?.response?.status !== 401) {
+                        const { voteType } = variables;
+    
+                        if(voteType === "UP") setVotesAmt((prev) => prev - 1)
+                        else setVotesAmt((prev) => prev + 1);
+    
+                        setCurrentVote(prevVote);
+    
+                        return toast({
+                            title: 'Ooops, something went wrong',
+                            description: 'Your vote was not registered, please try again later',
+                            variant: 'destructive',
+                        })
+                    } 
 
+                    const { voteType } = variables;
+    
                     if(voteType === "UP") setVotesAmt((prev) => prev - 1)
                     else setVotesAmt((prev) => prev + 1);
 
                     setCurrentVote(prevVote);
-
-                    return toast({
-                        title: 'Ooops, something went wrong',
-                        description: 'Your vote was not registered, please try again later',
-                        variant: 'destructive',
-
-                    })
+                
                 }
             },
         }

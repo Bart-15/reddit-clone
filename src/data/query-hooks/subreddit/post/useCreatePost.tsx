@@ -2,7 +2,7 @@ import { keys } from "@/data/react-query/constants";
 import { toast } from "@/hooks/use-toast";
 import { PostInputValidator } from "@/lib/validators/post";
 import { UseMutateFunction, useMutation, useQueryClient } from "@tanstack/react-query";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { usePathname, useRouter } from "next/navigation";
 
 interface UseCreatePost {
@@ -40,12 +40,16 @@ function useCreatePost(): UseCreatePost {
                 });
                 
             },
-            onError:(_error) =>{ 
-                toast({
-                    title: 'Ooops, something went wrong.',
-                    description: 'Your post was not published, please try again later.',
-                    variant: 'destructive'
-                })
+            onError:(error) =>{ 
+                if(error instanceof AxiosError) {
+                    if(error?.response?.status !== 401) {
+                        return toast({
+                            title: 'Ooops, something went wrong.',
+                            description: 'Your post was not published, please try again later.',
+                            variant: 'destructive'
+                        })
+                    }
+                }
             }
         }
     );

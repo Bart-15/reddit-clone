@@ -32,19 +32,12 @@ function useSubsribe(): UseSubsribedProps{
                     router.refresh();
                 })
 
-                toast({
+                return toast({
                     title: 'Subscribed',
                     description: `You are now subscribed to r/${variables.subredditName}`,
                     variant: 'default'
                 });
 
-            },
-            onError: () => {
-                return toast({
-                    title: 'There was a problem',
-                    description: 'Something went wrong, please try again later',
-                    variant: 'default'
-                })
             }
         }
     )

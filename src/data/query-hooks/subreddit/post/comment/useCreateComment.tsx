@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useMutation, UseMutateFunction } from "@tanstack/react-query";
 import { CommentRequest } from '@/lib/validators/comment';
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { toast } from '@/hooks/use-toast';
 import { useRouter } from 'next/navigation';
 
@@ -34,12 +34,16 @@ function useCreateComment(): UseCreatCommentProps {
                 setInput('');
                 setIsReplying(false)
             },
-            onError: () => {
-                return toast({
-                    title: 'Something went wrong',
-                    description: 'Comment wasnt posted successfully, please try again',
-                    variant: 'destructive'
-                })
+            onError: (error) => {
+                if(error instanceof AxiosError) {
+                    if(error?.response?.status !== 401) {
+                        return toast({
+                            title: 'Something went wrong',
+                            description: 'Comment wasnt posted successfully, please try again',
+                            variant: 'destructive'
+                        })
+                    }
+                }
             }  
         }
     ) 

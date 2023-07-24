@@ -40,7 +40,7 @@ function useChangeUserName(): UseChangeUsernameProps {
 
                 return toast({
                     title: 'There was an error',
-                    description: 'Could not create subreddit.',
+                    description: 'Could not update username.',
                     variant: 'destructive'
                 })
             }

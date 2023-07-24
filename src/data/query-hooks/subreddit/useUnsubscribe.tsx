@@ -35,19 +35,12 @@ function useUnsubscribe(): UseunsubscribeProps{
                     router.refresh();
                 })
 
-                toast({
+                return toast({
                     title: 'Unsubscribe',
                     description: `You are now unsubscribe to r/${variables.subredditName}`,
                     variant: 'default'
                 });
 
-            },
-            onError: () => {
-                return toast({
-                    title: 'There was a problem',
-                    description: 'Something went wrong, please try again later',
-                    variant: 'default'
-                })
             }
         }
     )
