@@ -2,7 +2,7 @@
 
 import { useCommentVote } from '@/data/query-hooks/subreddit';
 import { cn } from '@/lib/utils';
-import { CommentVote, VoteType } from '@prisma/client';
+import { CommentVote } from '@prisma/client';
 import { ArrowBigDown, ArrowBigUp } from 'lucide-react';
 import { FC } from 'react';
 import { Button } from './ui/Button';

@@ -4,14 +4,13 @@ import { db } from "@/lib/db"
 import { notFound } from "next/navigation"
 
 
-interface PageProps {
-    children: React.ReactNode
+interface SubmitProps {
     params : {
         slug: string
     }
 }
 
-const Submit = async({params}: PageProps) => {
+const Submit = async({params}: SubmitProps) => {
     
     const subreddit = await db.subreddit.findFirst({
         where : {
